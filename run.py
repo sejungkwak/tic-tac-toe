@@ -39,6 +39,7 @@ def player_ready(player):
 
   ready = 'A'
   choice = ['Y', 'N']
+  board = [7, 8, 9, 4, 5, 6, 1, 2, 3]
 
   while ready.upper() not in choice:
     ready = input("Are you ready to play? "
