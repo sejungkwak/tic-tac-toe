@@ -2,14 +2,11 @@
 board = [7, 8, 9, 4, 5, 6, 1, 2, 3]
 def display_board(board):
   
-  for slot in board:
-    if slot in board[:2] or slot in board[3:5] or slot in board[6:8]:
-      print(f" {slot} |", end="")
-    if slot == board[2] or slot == board[5]:
-      print(f" {slot} ")
-      print("-----------")
-    if slot == board[8]:
-      print(f" {slot} \n")
+  print(f" {board[0]} | {board[1]} | {board[2]}")
+  print("-----------")
+  print(f" {board[3]} | {board[4]} | {board[5]}")
+  print("-----------")
+  print(f" {board[6]} | {board[7]} | {board[8]}")
 
 # Displays the information
 def dsiplay_greeting():
@@ -83,11 +80,11 @@ def player_move(board, player):
       draw = check_draw(board)
       if gameover:
         print("Congratulations! You have won the game!")
-        player_move(board, player)
+        display_board(board)
         play_again()
       elif draw:
         print("Oh well, it is a draw xD")
-        player_move(board, player)
+        display_board(board)
         play_again()
       else:
         if player == 'X':
@@ -118,7 +115,8 @@ def play_again():
     
     if answer.upper() == 'Y':
       board = [7, 8, 9, 4, 5, 6, 1, 2, 3]
-      dsiplay_greeting()
+      display_board(board)
+      game_setting()
       break
     elif answer.upper() == 'N':
       print("Thank you for playing :)")
