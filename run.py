@@ -55,6 +55,32 @@ def player_ready():
         "Please enter Y or N.")
 
 # Win conditions
+def check_win(board):
+
+  if board[0] == board[1] == board[2] or board[3] == board[4] == board[5] or board[6] == board[7] == board[8] or board[0] == board[3] ==board[6] or board[1] == board[4] == board[7] or board[2] == board[5] == board[8] or board[0] == board[4] == board[8] or board[2] == board[4] == board[6]:
+    print("Congratulations! You have won the game!")
+    play_again()
+  else:
+    pass
+    
+# Play again
+def play_again():
+  answer = 'A'
+  choice = ['Y', 'N']
+
+  while answer.upper() not in choice:
+    answer = input("Do you want to play again? "
+      "Please enter [Y]es / [N]o")
+    
+    if answer.upper() == 'Y':
+      board = [7, 8, 9, 4, 5, 6, 1, 2, 3]
+      dsiplay_greeting()
+      break
+    elif answer.upper() == 'N':
+      print("Thank you for playing :)")
+      break
+    else:
+      print("Please enter Y or N.")
 
 # Gets user input
 
