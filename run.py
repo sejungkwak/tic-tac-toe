@@ -35,10 +35,10 @@ def game_setting():
 
   print(f"Player 1 is {player1.upper()}. "
     "Player 1 will go first.")
-  player_ready()
+  player_ready(player1.upper())
 
 # Ready to play
-def player_ready():
+def player_ready(player):
 
   ready = 'A'
   choice = ['Y', 'N']
@@ -48,6 +48,8 @@ def player_ready():
               "Please enter [Y]es or [N]o.")
     
     if ready.upper() in choice:
+      if ready.upper() == 'Y':
+        player_move(board, player)
       break
 
     else:
@@ -58,8 +60,7 @@ def player_ready():
 def check_win(board):
 
   if board[0] == board[1] == board[2] or board[3] == board[4] == board[5] or board[6] == board[7] == board[8] or board[0] == board[3] ==board[6] or board[1] == board[4] == board[7] or board[2] == board[5] == board[8] or board[0] == board[4] == board[8] or board[2] == board[4] == board[6]:
-    print("Congratulations! You have won the game!")
-    play_again()
+    return True
   else:
     pass
     
@@ -83,8 +84,38 @@ def play_again():
       print("Please enter Y or N.")
 
 # Gets user input
+def player_move(board, player):
 
-# Validates user input
+  gameon = True
+
+  while gameon:
+
+    display_board(board)
+    move = input("Choose your next position. "
+      "Please enter between 1 and 9.")
+
+    if not move.isdigit():
+      print(f"You have entered an invalid option: {move}")
+    else:
+      move = int(move)
+      if move not in board:
+        print(f"The position {move} has been taken.")
+      else:
+        break
+
+  for idx, val in enumerate(board):
+    if move == val:
+      board[idx] = player
+      gameover = check_win(board)
+      if gameover:
+        print("Congratulations! You have won the game!")
+        play_again()
+      else:
+        if player == 'X':
+          player = 'O'
+        else:
+          player = 'X'
+        player_move(board, player)
 
 # Updates game board
 
